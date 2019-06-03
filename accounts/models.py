@@ -27,3 +27,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_superuser
+
+
+
