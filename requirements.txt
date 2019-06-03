@@ -18,7 +18,7 @@ idna==2.8
 itypes==1.1.0
 Jinja2==2.10.1
 MarkupSafe==1.1.1
-mysqlclient==1.4.2.post1
+#mysqlclient==1.4.2.post1
 numpy==1.16.3
 oauthlib==3.0.1
 pandas==0.24.2
