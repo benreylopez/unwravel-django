@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import HttpResponse
 from accounts.models import Account
+from django.conf import settings
 # from apps.portfolio.models import Portfolio
 # from apps.portfolio.serializers import (CreatePortfolioSerializer,
 #                                         PortfolioDetailSerializer,
@@ -27,7 +28,8 @@ class PortfolioListAPIView(ListCreateAPIView):
     def get(self, *args, **kwargs):
         print("user: ", self.request.user)
         account = Account.objects.get(email=self.request.user)
-        json_data = open('/home/superdev/Documents/myproject/unwravel/portfolio/static/data/victoria_secret.json')
+        path = settings.BASE_DIR + '/portfolio/static/data/victoria_secret.json'
+        json_data = open(path)
         json_portfolios = json.load(json_data)
         topsize = account.topsize
         bottomsize = account.bottomsize
@@ -37,7 +39,6 @@ class PortfolioListAPIView(ListCreateAPIView):
         for portfolio in json_portfolios:
             product_category = portfolio['product_category']
             available_size = portfolio['available_size']
-            print(product_category)
             if product_category == "Panties":
                 if pantysize in available_size:
                     json_result.append(portfolio)
