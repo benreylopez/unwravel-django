@@ -43,8 +43,8 @@ class PortfolioListAPIView(ListCreateAPIView):
                 if pantysize in available_size:
                     json_result.append(portfolio)
             if product_category == "Lingerie":
-                # if pantysize in available_size:
-                json_result.append(portfolio)
+                if topsize in available_size:
+                    json_result.append(portfolio)
             if product_category == "Bras":
                 if brasize in available_size:
                     json_result.append(portfolio)
@@ -59,6 +59,7 @@ class PortfolioListAPIView(ListCreateAPIView):
 
 class PortfolioListCreateAPIView(ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
+    print("I am here")
 
 
 def portfolioList(request):
