@@ -8,12 +8,18 @@ from django import template
 from django.template import Context
 from rest_framework.schemas import get_schema_view
 from .views import PortfolioListAPIView
+from .views import PortfolioLikeAPIView
 
 urlpatterns = [
     path(
         '',
         PortfolioListAPIView.as_view(),
         name='portfolio-list',
+    ),
+    path(
+        'changeLOL/',
+        PortfolioLikeAPIView.as_view(),
+        name='portfolio-like',
     ),
     # url(r'^$', views.portfolioList, name='portfolioList')
 ]

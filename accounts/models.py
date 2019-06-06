@@ -28,5 +28,13 @@ class Account(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_superuser
 
+class PortfolioLike(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    uniq_id = models.CharField(max_length=255, null=True, blank=True)
+    lol = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = 'Portfolio Like'
+
 
 

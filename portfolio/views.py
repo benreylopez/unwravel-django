@@ -18,6 +18,8 @@ from django.conf import settings
 
 from accounts.models import Account
 from accounts.serializers import AccountSerializer
+from portfolio.serializers import PortfolioLikeSerializer
+from accounts.models import PortfolioLike
 import json
 
 
@@ -43,8 +45,8 @@ class PortfolioListAPIView(ListCreateAPIView):
                 if pantysize in available_size:
                     json_result.append(portfolio)
             if product_category == "Lingerie":
-                # if pantysize in available_size:
-                json_result.append(portfolio)
+                if topsize in available_size:
+                    json_result.append(portfolio)
             if product_category == "Bras":
                 if brasize in available_size:
                     json_result.append(portfolio)
@@ -69,4 +71,33 @@ def portfolioList(request):
 		pass
 
 	return HttpResponse("OK")
-		
+
+class PortfolioLikeAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = PortfolioLikeSerializer
+
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        print(request.user)
+        temp_data = request.data
+        temp_data["account"] = self.request.user
+        print(temp_data)
+        portfoliolike = PortfolioLike.objects.get_or_create(
+            account=self.request.user, 
+            uniq_id = request.data['uniq_id'])
+        portfoliolike[0].lol = request.data['lol']
+        portfoliolike[0].save()
+        return Response(
+            {'status': "OK"},
+            status=status.HTTP_201_CREATED)
+
+    def perform_create(self, serializer):
+        portfoliolike = PortfolioLike.objects.create(
+            account=self.request.user, 
+            uniq_id = serializer.data['uniq_id'],
+            lol = serializer.data['lol'])
+        return portfoliolike
+
+    def get_queryset(self):
+        return PortfolioLike.objects \
+            .filter(account=self.request.user)
