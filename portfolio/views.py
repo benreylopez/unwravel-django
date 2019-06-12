@@ -228,7 +228,7 @@ class AddFriendAPIView(ListCreateAPIView):
             )
         return Response(
             {'status':'OK'},
-            status=status.HTTP_201_CREATED)
+            status=status.HTTP_200_OK)
 
 class FriendListAPIView(ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
