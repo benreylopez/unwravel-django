@@ -28,5 +28,32 @@ class Account(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_superuser
 
+class PortfolioLike(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    uniq_id = models.CharField(max_length=255, null=True, blank=True)
+    lol = models.IntegerField(null=True)
 
+    class Meta:
+        verbose_name_plural = 'Portfolio Like'
 
+class Gift(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    uniq_id = models.CharField(max_length=255, null=True, blank=True)
+    gift = models.BooleanField(null=True)
+
+    class Meta:
+        verbose_name_plural = "Gift"
+
+class Friend(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    friend = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Friend'
+
+class ProductRank(models.Model):
+    uniq_id = models.CharField(max_length=255, null=True, blank=True)
+    rank = models.IntegerField(null=True)
+    
+    class Meta:
+        verbose_name_plural = 'Ranking'

@@ -29,7 +29,7 @@ SECRET_KEY = 'm41cx)wlxiwt@ao3fuluw$%b8p@$=rxsh+-1y48@2wxg&(pxpl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['178.128.8.37','0.0.0.0','127.0.0.1','localhost', 'd20962a7.ngrok.io']
+ALLOWED_HOSTS = ['178.128.8.37','0.0.0.0','127.0.0.1','localhost', '957ff55f.ngrok.io']
 
 
 # Application definition
@@ -84,11 +84,18 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # EMAIL_HOST_USER = 'superdev88@hotmail.com'
 # EMAIL_HOST_PASSWORD = 'spqkfrkfkr4'
-EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+
+# EMAIL_HOST_USER = 'unwravel.app@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Unwravel2019'
+
+
+EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'unwravel.app@gmail.com'
-EMAIL_HOST_PASSWORD = 'Unwravel2019'
+EMAIL_HOST_USER = 'Rai0826@hotmail.com'
+EMAIL_HOST_PASSWORD = '`1234567890-='
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER #'nysochp@gmail.com' #'Bullxchange <support@mail.bullxchange.io>'
@@ -184,7 +191,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',  # noqa
     'PAGE_SIZE': 100
@@ -235,3 +242,9 @@ STATICFILES_DIRS = [
 BOOTSTRAP4 = {
     'include_jquery': True,
 }
+
+
+# Setting weight of products
+LOVE_WEIGHT = 4
+LIKE_WEIGHT = 1
+GIFT_WEIGHT = 7
