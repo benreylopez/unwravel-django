@@ -59,17 +59,17 @@ class PortfolioListAPIView(ListCreateAPIView):
             productrank = ProductRank.objects.filter(uniq_id = uniq_id)
             portfolio['rank'] = productrank[0].rank
 
-            gift = Gift.objects.filter(account=account, uniq_id = uniq_id)
-            if len(gift) == 0:
-                if product_category == "Panties":
-                    if pantysize in available_size:
-                        json_result.append(portfolio)
-                if product_category == "Lingerie":
-                    if topsize in available_size:
-                        json_result.append(portfolio)
-                if product_category == "Bras":
-                    if brasize in available_size:
-                        json_result.append(portfolio)
+            # gift = Gift.objects.filter(account=account, uniq_id = uniq_id)
+            # if len(gift) == 0:
+            if product_category == "Panties":
+                if pantysize in available_size:
+                    json_result.append(portfolio)
+            if product_category == "Lingerie":
+                if topsize in available_size:
+                    json_result.append(portfolio)
+            if product_category == "Bras":
+                if brasize in available_size:
+                    json_result.append(portfolio)
             # if product_category == "Panties":
             #     if pantysize in available_size:
             #         json_result.append(portfolio)
@@ -91,15 +91,14 @@ class BrideListAPIView(RetrieveAPIView):
         json_result = []
         for portfolio in json_portfolios:
             uniq_id = portfolio['uniq_id']
-            is_gift = Gift.objects.filter( account_id=account.id, uniq_id=uniq_id )
-            if is_gift:
-                portfoliolike = PortfolioLike.objects.filter(account_id=account.id, uniq_id = uniq_id)
-                if portfoliolike:
+            portfoliolike = PortfolioLike.objects.filter(account_id=account.id, uniq_id = uniq_id)
+
+            if portfoliolike:
+                if(portfoliolike[0].lol >= 1):
                     portfolio['lol'] = portfoliolike[0].lol
-                else: portfolio['lol'] = 0
-                productrank = ProductRank.objects.filter(uniq_id = uniq_id)
-                portfolio['rank'] = productrank[0].rank
-                json_result.append(portfolio)
+                    productrank = ProductRank.objects.filter(uniq_id = uniq_id)
+                    portfolio['rank'] = productrank[0].rank
+                    json_result.append(portfolio)
         return Response( data=json_result,
                         status=status.HTTP_200_OK)
 
@@ -200,9 +199,20 @@ class AddGiftAPIView(ListCreateAPIView):
         gift = Gift.objects.get_or_create(
             account=self.request.user,
             uniq_id = uniq_id)
-        gift[0].gift = True
-        gift[0].save()
         update_rank(uniq_id,0,0,1)
+        return Response(
+            {'status':'OK'},
+            status=status.HTTP_201_CREATED)
+
+class RemoveGiftAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def create(self, request, *args, **kwargs):
+        uniq_id = request.data['uniq_id']
+        gift = Gift.objects.filter(
+            account=self.request.user,
+            uniq_id = uniq_id).delete()
+
         return Response(
             {'status':'OK'},
             status=status.HTTP_201_CREATED)
@@ -223,7 +233,7 @@ class AddFriendAPIView(ListCreateAPIView):
             '',
             settings.DEFAULT_FROM_EMAIL,
             email_list,
-            html_message =  account.email + " send invitation to you on unwravel.com. You can see his gifts with your email",
+            html_message =  account.email + " send invitation to you on unwravel.com. You can see his gifts with your privacy",
             fail_silently=False
             )
         return Response(

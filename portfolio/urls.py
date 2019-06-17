@@ -17,6 +17,7 @@ from .views import IsFriendAPIView
 from .views import BrideListAPIView
 from .views import EditProfileAPIView
 from .views import DeleteFriendAPIView
+from .views import RemoveGiftAPIView
 from portfolio import views as portfolio_views
 
 urlpatterns = [
@@ -34,6 +35,11 @@ urlpatterns = [
     	'addGift/',
     	AddGiftAPIView.as_view(),
     	name='add-gift'
+    ),
+    path(
+    	'removeGift/',
+    	RemoveGiftAPIView.as_view(),
+    	name='remove-gift'
     ),
     path(
     	'getGifts/',

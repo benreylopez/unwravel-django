@@ -29,7 +29,7 @@ SECRET_KEY = 'm41cx)wlxiwt@ao3fuluw$%b8p@$=rxsh+-1y48@2wxg&(pxpl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['178.128.8.37','0.0.0.0','127.0.0.1','localhost', 'b2dc2c33.ngrok.io']
+ALLOWED_HOSTS = ['178.128.8.37','0.0.0.0','127.0.0.1','localhost', '1ff53e5f.ngrok.io']
 
 
 # Application definition
@@ -85,6 +85,7 @@ EMAIL_PORT = 587
 
 EMAIL_HOST_USER = 'unwravel.app@gmail.com'
 EMAIL_HOST_PASSWORD = 'Lingerie2019'
+
 
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False

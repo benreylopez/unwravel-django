@@ -21,7 +21,7 @@ urlpatterns += [
     url(r'^signout/$', portal_views.portal_signout, name='portal_signout'),
     url(r'^api-auth/', include('rest_framework.urls')),
     path('api/accounts/', include('accounts.urls')),
-    url(r'^accounts/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
     path('api/portfolios/', include('portfolio.urls')),
     # url(r'^search/$', portal_views.portal_search, name='portal_search'),
 ]
