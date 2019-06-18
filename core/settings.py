@@ -27,7 +27,7 @@ TEMPLATE_DEBUG = DEBUG
 SECRET_KEY = 'm41cx)wlxiwt@ao3fuluw$%b8p@$=rxsh+-1y48@2wxg&(pxpl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['178.128.8.37','0.0.0.0','127.0.0.1','localhost', '1ff53e5f.ngrok.io']
 
@@ -214,7 +214,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(PROJECTPATH, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -227,7 +227,7 @@ STATICFILES_DIRS = [
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECTPATH, "images"),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 BOOTSTRAP4 = {
