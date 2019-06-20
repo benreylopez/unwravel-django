@@ -37,7 +37,7 @@ class PortfolioListAPIView(ListCreateAPIView):
         print("user: ", self.request.user)
         account = Account.objects.get(email=self.request.user)
 
-        path = settings.BASE_DIR + '/portfolio/static/data/victoria_secret.json'
+        path = settings.BASE_DIR + '/static/victoria_secret.json'
         json_data = open(path)
         json_portfolios = json.load(json_data)
         topsize = account.topsize
@@ -85,7 +85,7 @@ class BrideListAPIView(RetrieveAPIView):
 
         account = Account.objects.get(email=request.data['email'])
         print(account.id);
-        path = settings.BASE_DIR + '/portfolio/static/data/victoria_secret.json'
+        path = settings.BASE_DIR + '/static/victoria_secret.json'
         json_data = open(path)
         json_portfolios = json.load(json_data)
         json_result = []
@@ -172,7 +172,7 @@ class GiftListAPIView(ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, *args, **kwargs):
-        path = settings.BASE_DIR + '/portfolio/static/data/victoria_secret.json'
+        path = settings.BASE_DIR + '/static/victoria_secret.json'
         json_data = open(path)
         json_portfolios = json.load(json_data)
         json_result = []
@@ -303,7 +303,7 @@ def test_send_message(request):
     return HttpResponse("Ok")
 
 def initialize_rankinformation(request):
-    path = settings.BASE_DIR + '/portfolio/static/data/victoria_secret.json'
+    path = settings.BASE_DIR + '/static/victoria_secret.json'
     json_data = open(path)
     json_portfolios = json.load(json_data)
     json_result = []
