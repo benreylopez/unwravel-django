@@ -29,7 +29,7 @@ SECRET_KEY = 'm41cx)wlxiwt@ao3fuluw$%b8p@$=rxsh+-1y48@2wxg&(pxpl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['178.128.8.37','0.0.0.0','127.0.0.1','localhost', '1ff53e5f.ngrok.io']
+ALLOWED_HOSTS = ['178.128.8.37','0.0.0.0','127.0.0.1','localhost', '81062d3f.ngrok.io']
 
 
 # Application definition
@@ -79,14 +79,23 @@ ROOT_URLCONF = 'core.urls'
 # -----------------------------------------------------------------------------
 # Application definition
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp-mail.outlook.com'
+# EMAIL_PORT = 587
 
-EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'superdev88@hotmail.com'
+# EMAIL_HOST_PASSWORD = 'spqkfrkfkr4'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+
+# EMAIL_HOST_USER = 'unwravel.app@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Lingerie2019'
+
+
+EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'unwravel.app@gmail.com'
-EMAIL_HOST_PASSWORD = 'Lingerie2019'
-
-
+EMAIL_HOST_USER = 'Rai0826@hotmail.com'
+EMAIL_HOST_PASSWORD = '`1234567890-='
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER #'nysochp@gmail.com' #'Bullxchange <support@mail.bullxchange.io>'
