@@ -78,6 +78,7 @@ class PortfolioListAPIView(ListCreateAPIView):
             status=status.HTTP_200_OK,
             )
 
+
 class BrideListAPIView(RetrieveAPIView):
 
     def post(self, request, *args, **kwargs):
@@ -167,6 +168,7 @@ class PortfolioLikeAPIView(ListCreateAPIView):
 
 class GiftListAPIView(ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
+    serializer_class = AccountSerializer
 
     def get(self, *args, **kwargs):
         path = settings.BASE_DIR + '/static/victoria_secret.json'

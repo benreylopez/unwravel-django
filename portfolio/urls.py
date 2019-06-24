@@ -42,7 +42,7 @@ urlpatterns = [
     	name='remove-gift'
     ),
     path(
-    	'getGifts/',
+    	'getgift/',
     	GiftListAPIView.as_view(),
     	name='gift-list'
     ),
