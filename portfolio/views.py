@@ -57,7 +57,6 @@ class PortfolioListAPIView(ListCreateAPIView):
             else:
                 portfolio['lol'] = 0
             productrank = ProductRank.objects.filter(uniq_id = uniq_id)
-            portfolio['rank'] = productrank[0].rank
 
             # gift = Gift.objects.filter(account=account, uniq_id = uniq_id)
             # if len(gift) == 0:
@@ -96,8 +95,6 @@ class BrideListAPIView(RetrieveAPIView):
             if portfoliolike:
                 if(portfoliolike[0].lol >= 1):
                     portfolio['lol'] = portfoliolike[0].lol
-                    productrank = ProductRank.objects.filter(uniq_id = uniq_id)
-                    portfolio['rank'] = productrank[0].rank
                     json_result.append(portfolio)
         return Response( data=json_result,
                         status=status.HTTP_200_OK)
@@ -184,8 +181,6 @@ class GiftListAPIView(ListCreateAPIView):
                 if portfoliolike:
                     portfolio['lol'] = portfoliolike[0].lol
                 else: portfolio['lol'] = 0
-                productrank = ProductRank.objects.filter(uniq_id = uniq_id)
-                portfolio['rank'] = productrank[0].rank
                 json_result.append(portfolio)
         return Response( data=json_result,
                         status=status.HTTP_200_OK)
