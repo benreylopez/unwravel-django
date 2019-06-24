@@ -18,7 +18,7 @@ class ConfirmEmailView():
 
 def confirm_login(request):
 	print(request.user.username)
-	return redirect("http://localhost:3000/frontend/login/")
+	return redirect("http://unwravel.com")
 
 class ConfirmAPIView(RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
@@ -26,3 +26,4 @@ class ConfirmAPIView(RetrieveAPIView):
     print("I am USER")
     def get(self, *args, **kwargs):
     	print('USER:',self.request.user)
+	#return redirect("http://unwravel.com")
