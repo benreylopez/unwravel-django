@@ -175,13 +175,11 @@ class GiftListAPIView(ListCreateAPIView):
         json_result = []
         for portfolio in json_portfolios:
             uniq_id = portfolio['uniq_id']
-            is_gift = Gift.objects.filter( account=self.request.user, uniq_id=uniq_id )
-            if is_gift:
-                portfoliolike = PortfolioLike.objects.filter(account=self.request.user, uniq_id = uniq_id)
-                if portfoliolike:
-                    portfolio['lol'] = portfoliolike[0].lol
-                else: portfolio['lol'] = 0
-                json_result.append(portfolio)
+            portfoliolike = PortfolioLike.objects.filter(account=self.request.user, uniq_id = uniq_id)
+            if portfoliolike:
+                if portfoliolike[0].lol == 2:
+                    portfolio['lol'] = 2
+                    json_result.append(portfolio)
         return Response( data=json_result,
                         status=status.HTTP_200_OK)
 
