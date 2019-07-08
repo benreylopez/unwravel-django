@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from django.http import HttpResponse
 from accounts.models import Account
 from django.conf import settings
+from scraper.victoria_scraper_headless import scraper
 # from apps.portfolio.models import Portfolio
 # from apps.portfolio.serializers import (CreatePortfolioSerializer,
 #                                         PortfolioDetailSerializer,
@@ -317,3 +318,12 @@ def update_rank(uniq_id, like, love, gift):
     product.rank = rank
     product.save()
     return HttpResponse("Ok")
+
+def products_scraper(request):
+    scraper()
+    return HttpResponse("ok")
+
+def products_scrape():
+    print("started ..")
+    scraper()
+    # return HttpResponse("ok")

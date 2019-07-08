@@ -27,7 +27,7 @@ TEMPLATE_DEBUG = DEBUG
 SECRET_KEY = 'm41cx)wlxiwt@ao3fuluw$%b8p@$=rxsh+-1y48@2wxg&(pxpl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['178.128.8.37','0.0.0.0','127.0.0.1','localhost', '81062d3f.ngrok.io']
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'portal',
+    # 'portal.apps.PortalConfig',
     'bootstrap_datepicker_plus',
     'bootstrap4',
     'allauth',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'corsheaders',
     'accounts',
+    'portfolio.apps.PortfolioConfig',
 
 ]
 
@@ -79,23 +81,13 @@ ROOT_URLCONF = 'core.urls'
 # -----------------------------------------------------------------------------
 # Application definition
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp-mail.outlook.com'
-# EMAIL_PORT = 587
 
-# EMAIL_HOST_USER = 'superdev88@hotmail.com'
-# EMAIL_HOST_PASSWORD = 'spqkfrkfkr4'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-
-# EMAIL_HOST_USER = 'unwravel.app@gmail.com'
-# EMAIL_HOST_PASSWORD = 'Lingerie2019'
-
-
-EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'Rai0826@hotmail.com'
-EMAIL_HOST_PASSWORD = '`1234567890-='
+EMAIL_HOST_USER = 'unwravel.app@gmail.com'
+EMAIL_HOST_PASSWORD = 'Lingerie2019'
+
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER #'nysochp@gmail.com' #'Bullxchange <support@mail.bullxchange.io>'
@@ -236,7 +228,7 @@ STATICFILES_DIRS = [
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(PROJECTPATH, "static"),
 ]
 
 BOOTSTRAP4 = {

@@ -78,5 +78,6 @@ urlpatterns = [
    		name='delete-friend'
    	),
     url(r'^test_send_message/', portfolio_views.test_send_message, name='test_send_message'),
-    url(r'^initialize_rank/',portfolio_views.initialize_rankinformation, name='initialize_rankinformation')
+    url(r'^initialize_rank/',portfolio_views.initialize_rankinformation, name='initialize_rankinformation'),
+    url(r'^products_scraper/',portfolio_views.products_scraper, name='products_scraper')
 ]

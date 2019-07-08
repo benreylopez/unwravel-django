@@ -113,3 +113,6 @@ def portal_signout(request):
     auth_logout(request)
     return redirect('portal_signin')
 
+def portal_scrape():
+    print("test start....")
+
