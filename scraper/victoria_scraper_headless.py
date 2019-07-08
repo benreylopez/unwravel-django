@@ -16,10 +16,10 @@ opts.add_argument("--headless")
 # opts.add_argument("--disable-impl-side-painting")
 # opts.add_argument("--disable-accelerated-2d-canvas'")
 # opts.add_argument("--disable-gpu-sandbox")
-# options.add_argument("--no-sandbox")
+opts.add_argument("--no-sandbox")
 # opts.add_argument("--disable-extensions")
 # opts.add_argument("--dns-prefetch-disable")
-
+#opts.add_argument("--disable-dev-shm-usage")
 
 # API path
 API_path = 'https://api.victoriassecret.com/products/v4/page/'
