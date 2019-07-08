@@ -59,6 +59,7 @@ def get_products(url):
 
 		img_url = art.find('a',)['href']
 		# print('https://www.victoriassecret.com'+img_url)
+		product_info['uniq_id'] = uniq_id
 		product_info['pageurl'] = 'https://www.victoriassecret.com'+img_url
 
 		if check_status:
