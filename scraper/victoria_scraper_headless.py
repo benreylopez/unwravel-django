@@ -54,7 +54,7 @@ def get_products(url):
 			if check_status:
 				break
 
-		product_info['product_category'] = url_split[-2]
+		product_info['product_category'] = url_split[-2].capitalize()
 		product_info['style_attributes'] = url_split[-1]
 
 		img_url = art.find('a',)['href']
@@ -190,4 +190,4 @@ def scraper():
 		json.dump(all_products, outfile)
 	
 # main()
-# scraper()
+scraper()
