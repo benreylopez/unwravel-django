@@ -190,4 +190,4 @@ def scraper():
 		json.dump(all_products, outfile)
 	
 # main()
-scraper()
+# scraper()

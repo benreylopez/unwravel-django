@@ -95,6 +95,7 @@ class BrideListAPIView(RetrieveAPIView):
             portfoliolike = PortfolioLike.objects.filter(account_id=account.id, uniq_id = uniq_id)
 
             if portfoliolike:
+                print(portfoliolike[0].uniq_id)
                 if(portfoliolike[0].lol >= 1):
                     portfolio['lol'] = portfoliolike[0].lol
                     json_result.append(portfolio)
