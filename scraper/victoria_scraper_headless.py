@@ -44,7 +44,9 @@ def get_products(url):
 		product_info = {}
 		# Extract uniq_id
 		uniq_id = art['data-uuid']
-
+		uniq_id_list = [product['uniq_id'] for product in all_products]
+		if uniq_id in uniq_id_list:
+			continue
 		url_split = url.split('/')
 		check_status = False
 		# API_path for getting detailed product information
@@ -133,6 +135,7 @@ def detailed_product_information(product_api_path):
 	return check_status, product_info
 
 def scraper():
+	print("victoriassecret products scraping started ....")
 	global total_product_number
 	global all_products
 	total_product_number = 0
@@ -186,7 +189,7 @@ def scraper():
 	for url in url_list:
 		get_products(url)
 	# detailed_product_information(product_path)
-	with open('static/victoria_secret.json', 'w') as outfile:
+	with open('c/victoria_secret.json', 'w') as outfile:
 		json.dump(all_products, outfile)
 	
 # main()

@@ -12,6 +12,7 @@ from django.http import HttpResponse
 from accounts.models import Account
 from django.conf import settings
 from scraper.victoria_scraper_headless import scraper
+from scraper.zaful_scraper import zaful_scraper
 # from apps.portfolio.models import Portfolio
 # from apps.portfolio.serializers import (CreatePortfolioSerializer,
 #                                         PortfolioDetailSerializer,
@@ -322,9 +323,11 @@ def update_rank(uniq_id, like, love, gift):
 
 def products_scraper(request):
     scraper()
+    zaful_scraper()
     return HttpResponse("ok")
 
 def products_scrape():
     print("started ..")
     scraper()
+    zaful_scraper()
     # return HttpResponse("ok")
