@@ -26,3 +26,4 @@ media/thumbnails
 !audio_icon.png
 algo/voice
 *.wav
+*.json
