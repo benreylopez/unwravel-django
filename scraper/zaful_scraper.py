@@ -42,6 +42,7 @@ def zaful_scraper():
 	global all_products
 	global total_product_number
 	total_product_number = 0
+	all_products = []
 	driver = webdriver.Chrome('chromedriver', options=opts)
 	path = "static/victoria_secret_temp.json"
 	json_data = open(path)
@@ -73,16 +74,16 @@ def zaful_scraper():
 		thumbail_color_p = soup.find("p", {"class": "active"})
 		thumbail_color = thumbail_color_p.find("img", )['src']
 
-		product_info['uniq_id'] = product['SKU']
+		product_info['uniq_id'] = str(product['SKU'])
 		product_info['description'] = str(description)
 		product_info['product_imageurl'] = thumb_image_urls
 		product_info['brand_name'] = ""
-		product_info['available_size'] = [product['Size']]
-		product_info['color'] = product['Color']
+		product_info['available_size'] = str([product['Size']])
+		product_info['color'] = str(product['Color'])
 		product_info['color_thumbnail'] = thumbail_color
 		product_info['product_category'] = "Lingerie"
 		product_info['style_attributes'] = "Intimates"
-		product_info['pageurl'] = product_url
+		product_info['pageurl'] = str(product_url)
 
 		all_products.append(product_info)
 		total_product_number = total_product_number + 1
