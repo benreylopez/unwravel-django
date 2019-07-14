@@ -189,7 +189,7 @@ def scraper():
 	for url in url_list:
 		get_products(url)
 	# detailed_product_information(product_path)
-	with open('c/victoria_secret.json', 'w') as outfile:
+	with open('static/victoria_secret_temp.json', 'w') as outfile:
 		json.dump(all_products, outfile)
 	
 # main()

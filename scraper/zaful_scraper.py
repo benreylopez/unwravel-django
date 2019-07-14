@@ -43,7 +43,7 @@ def zaful_scraper():
 	global total_product_number
 	total_product_number = 0
 	driver = webdriver.Chrome('chromedriver', options=opts)
-	path = "static/victoria_secret.json"
+	path = "static/victoria_secret_temp.json"
 	json_data = open(path)
 	all_products = json.load(json_data)
 	headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.3"}
@@ -92,4 +92,4 @@ def zaful_scraper():
 		json.dump(all_products, outfile)
 	driver.quit()
 
-zaful_scraper()
+#zaful_scraper()
