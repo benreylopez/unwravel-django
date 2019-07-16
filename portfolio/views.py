@@ -323,7 +323,7 @@ def update_rank(uniq_id, like, love, gift):
 
 def products_scraper(request):
     print("scraping started")
-    scraper()
+    #scraper()
     zaful_scraper()
     return HttpResponse("ok")
 
