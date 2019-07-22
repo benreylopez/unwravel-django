@@ -232,7 +232,7 @@ class AddFriendAPIView(ListCreateAPIView):
             '',
             settings.DEFAULT_FROM_EMAIL,
             email_list,
-            html_message =  account.email + " send invitation to you on unwravel.com. You can see his gifts with your privacy",
+            html_message =  "Hello,\n" + "\n" + account.firstname + " " + account.lastname + "(" + account.email + ")" + " has invited you to view their lingerie registry on unwravel.com! You can view the registry by using your email and theirs to login!\n" + "\n" + "Kindly,\n" + "\n" + "The Unwravel Team",
             fail_silently=False
             )
         return Response(
@@ -346,3 +346,8 @@ def products_scrape():
     zaful_scraper()
     initialize_rankinformation()
     # return HttpResponse("ok")
+
+def test_message(request):
+    html_message =  "Hello,\n" + "\n" + "Ben" + " " + "Lopez" + "(" + ")" + " has invited you to view their lingerie registry on unwravel.com! You can view the registry by using your email and theirs to login!\n" + "\n" + "Kindly,\n" + "\n" + "The Unwravel Team"
+    print(html_message)
+    return HttpResponse("Ok")

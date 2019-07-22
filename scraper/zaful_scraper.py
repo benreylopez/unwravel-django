@@ -73,14 +73,13 @@ def zaful_scraper():
 		thumb_image_urls = [image['src'] for image in thumb_images_url]
 		thumbail_color_p = soup.find("p", {"class": "active"})
 		thumbail_color = thumbail_color_p.find("img", )['src']
-
 		product_info['product_name'] = str(product['Name'])
 		product_info['uniq_id'] = str(product['SKU'])
 		product_info['description'] = str(description)
 		product_info['product_imageurl'] = thumb_image_urls
-		product_info['brand_name'] = ""
+		product_info['brand_name'] = "Zaful"
 		product_info['available_size'] = [product['Size']]
-		product_info['color'] = str(product['Color'])
+		product_info['color'] = product['Color']
 		product_info['color_thumbnail'] = thumbail_color
 		product_info['product_category'] = "Lingerie"
 		product_info['style_attributes'] = "Intimates"
@@ -90,6 +89,7 @@ def zaful_scraper():
 		total_product_number = total_product_number + 1
 		print("zafu scraped product number", total_product_number)
 		
+	all_products = sorted(all_products, key=lambda x : x['color'], reverse=True)
 	with open('static/victoria_secret.json', 'w') as outfile:
 		json.dump(all_products, outfile)
 	driver.quit()
