@@ -313,6 +313,18 @@ def initialize_rankinformation(request):
         product_rank[0].save()
     return HttpResponse("Ok")
 
+def initialize_rankinformation():
+    path = settings.BASE_DIR + '/static/victoria_secret.json'
+    json_data = open(path)
+    json_portfolios = json.load(json_data)
+    json_result = []
+    for portfolio in json_portfolios:
+        uniq_id = portfolio['uniq_id']
+        product_rank = ProductRank.objects.get_or_create(uniq_id = uniq_id)
+        product_rank[0].rank = 0
+        product_rank[0].save()
+    return HttpResponse("Ok")
+
 
 def update_rank(uniq_id, like, love, gift):
     product = ProductRank.objects.get(uniq_id = uniq_id)
@@ -323,12 +335,14 @@ def update_rank(uniq_id, like, love, gift):
 
 def products_scraper(request):
     print("scraping started")
-    scraper()
+    #scraper()
     zaful_scraper()
+    initialize_rankinformation()
     return HttpResponse("ok")
 
 def products_scrape():
     print("started ..")
     scraper()
     zaful_scraper()
+    initialize_rankinformation()
     # return HttpResponse("ok")
