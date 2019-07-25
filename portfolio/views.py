@@ -228,7 +228,7 @@ class AddFriendAPIView(ListCreateAPIView):
         email_list = []
         email_list.append(request.data['email'])
         account = Account.objects.get(email=self.request.user)
-        send_mail('Congratulation',
+        send_mail('Congratulations',
             '',
             settings.DEFAULT_FROM_EMAIL,
             email_list,
@@ -335,7 +335,7 @@ def update_rank(uniq_id, like, love, gift):
 
 def products_scraper(request):
     print("scraping started")
-    #scraper()
+    scraper()
     zaful_scraper()
     initialize_rankinformation()
     return HttpResponse("ok")

@@ -76,6 +76,7 @@ def zaful_scraper():
 		product_info['product_name'] = str(product['Name'])
 		product_info['uniq_id'] = str(product['SKU'])
 		product_info['description'] = str(description)
+		product_info['price'] = str(product['Retail_Price'])
 		product_info['product_imageurl'] = thumb_image_urls
 		product_info['brand_name'] = "Zaful"
 		product_info['available_size'] = [product['Size']]
@@ -87,6 +88,7 @@ def zaful_scraper():
 
 		all_products.append(product_info)
 		total_product_number = total_product_number + 1
+		# print("price", product_info['price'])
 		print("zafu scraped product number", total_product_number)
 		
 	all_products = sorted(all_products, key=lambda x : x['color'], reverse=True)
@@ -94,4 +96,4 @@ def zaful_scraper():
 		json.dump(all_products, outfile)
 	driver.quit()
 
-#zaful_scraper()
+# zaful_scraper()

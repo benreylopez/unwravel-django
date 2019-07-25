@@ -64,6 +64,9 @@ def get_products(url):
 		product_info['uniq_id'] = uniq_id
 		product_info['pageurl'] = 'https://www.victoriassecret.com'+img_url
 
+		# find price
+		temp_price = art.find('p', {'class': 'price'})
+		product_info['price'] = str(temp_price.text)
 		if check_status:
 			total_product_number = total_product_number + 1
 			print("total_product_number: ", total_product_number)
@@ -81,10 +84,6 @@ def detailed_product_information(product_api_path):
 		product = json_information['product']
 		product_info['product_name'] = product['shortDescription']
 		product_info['brand_name'] = product['brandName']
-		try:
-			product_info['price'] = product['dealPrice']
-		except:
-			pass
 
 		genericId = product['featuredChoice']['genericId']
 		choice = product['featuredChoice']['choice']
