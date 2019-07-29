@@ -76,7 +76,7 @@ def zaful_scraper():
 		product_info['product_name'] = str(product['Name'])
 		product_info['uniq_id'] = str(product['SKU'])
 		product_info['description'] = str(description)
-		product_info['price'] = str(product['Retail_Price'])
+		product_info['price'] = "$" + str(product['Retail_Price'])
 		product_info['product_imageurl'] = thumb_image_urls
 		product_info['brand_name'] = "Zaful"
 		product_info['available_size'] = [product['Size']]

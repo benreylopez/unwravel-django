@@ -66,7 +66,10 @@ def get_products(url):
 
 		# find price
 		temp_price = art.find('p', {'class': 'price'})
-		product_info['price'] = str(temp_price.text)
+		check_price = str(temp_price.text).split()[0]
+		if check_price == "Original":
+			check_price = str(temp_price.text).split()[3]
+		product_info['price'] = check_price
 		if check_status:
 			total_product_number = total_product_number + 1
 			print("total_product_number: ", total_product_number)
