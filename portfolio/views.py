@@ -124,6 +124,8 @@ class BrideListAPIView(RetrieveAPIView):
                     liked_style.append(portfolio['style_attributes'])
                 else:
                     unliked_portfolio.append(portfolio)
+            else:
+                unliked_portfolio.append(portfolio)
 
         for portfolio in unliked_portfolio:
             if portfolio['style_attributes'] in liked_style:
