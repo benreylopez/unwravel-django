@@ -47,6 +47,16 @@ class PortfolioListAPIView(ListCreateAPIView):
         brasize = account.brasize
         pantysize = account.pantysize
         json_result = []
+
+        liked_style = []
+        for portfolio in json_portfolios:
+            uniq_id = portfolio['uniq_id']
+            portfoliolike = PortfolioLike.objects.filter(account=account, uniq_id = uniq_id)
+
+            if portfoliolike:
+                if(portfoliolike[0].lol >= 1):
+                    liked_style.append(portfolio['style_attributes'])
+
         for portfolio in json_portfolios:
             
             product_category = portfolio['product_category']
@@ -55,9 +65,17 @@ class PortfolioListAPIView(ListCreateAPIView):
             
             portfoliolike = PortfolioLike.objects.filter(account=account, uniq_id = uniq_id)
             if portfoliolike:
-                portfolio['lol'] = portfoliolike[0].lol
-            else:
+                if(portfoliolike[0].lol >= 1):
+                    portfolio['lol'] = portfoliolike[0].lol
+                elif(portfolio['style_attributes'] in liked_style):
+                    portfolio['lol'] = 0
+                else:
+                    portfolio['lol'] = -1
+            elif(portfolio['style_attributes'] in liked_style):
                 portfolio['lol'] = 0
+            else:
+                portfolio['lol'] = -1
+
             productrank = ProductRank.objects.filter(uniq_id = uniq_id)
 
             # gift = Gift.objects.filter(account=account, uniq_id = uniq_id)
@@ -91,6 +109,9 @@ class BrideListAPIView(RetrieveAPIView):
         json_data = open(path)
         json_portfolios = json.load(json_data)
         json_result = []
+        liked_style = []
+        unliked_portfolio = []
+        left_portfolio = []
         for portfolio in json_portfolios:
             uniq_id = portfolio['uniq_id']
             portfoliolike = PortfolioLike.objects.filter(account_id=account.id, uniq_id = uniq_id)
@@ -100,6 +121,20 @@ class BrideListAPIView(RetrieveAPIView):
                 if(portfoliolike[0].lol >= 1):
                     portfolio['lol'] = portfoliolike[0].lol
                     json_result.append(portfolio)
+                    liked_style.append(portfolio['style_attributes'])
+                else:
+                    unliked_portfolio.append(portfolio)
+
+        for portfolio in unliked_portfolio:
+            if portfolio['style_attributes'] in liked_style:
+                portfolio['lol'] = 0
+                json_result.append(portfolio)
+            else:
+                left_portfolio.append(portfolio)
+        for portfolio in left_portfolio:
+            portfolio['lol'] = -1
+            json_result.append(portfolio)
+
         return Response( data=json_result,
                         status=status.HTTP_200_OK)
 

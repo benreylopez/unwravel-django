@@ -99,7 +99,13 @@ def detailed_product_information(product_api_path):
 
 		sizes = []
 		for inventory in my_inventory:
-			size = inventory['size1']
+			size1 = inventory['size1']
+			try:
+				size2 = inventory['size2']
+			except:
+				size2 = ""
+			size = size1 + size2
+			print("size is : ", size)
 			if size not in sizes:
 				sizes.append(size)
 		product_info['available_size'] = sizes
@@ -142,7 +148,8 @@ def scraper():
 	global all_products
 	total_product_number = 0
 	all_products = []
-	url_list = ['https://www.victoriassecret.com/vs/bras/demi',
+	url_list = [
+	'https://www.victoriassecret.com/vs/bras/demi',
 	'https://www.victoriassecret.com/vs/bras/full-coverage',
 	'https://www.victoriassecret.com/vs/bras/perfect-shape',
 	'https://www.victoriassecret.com/vs/bras/t-shirt-bra',
@@ -195,4 +202,4 @@ def scraper():
 		json.dump(all_products, outfile)
 	
 # main()
-# scraper()
+scraper()
