@@ -384,17 +384,17 @@ def update_rank(uniq_id, like, love, gift):
 def products_scraper(request):
     print("scraping started")
     scraper()
-    zaful_scraper()
+    #zaful_scraper()
 
     # randomize
     path = settings.BASE_DIR + '/static/victoria_secret.json'
     json_data = open(path)
     json_portfolios = json.load(json_data)
-    rand_portfolios = random.shuffle(json_portfolios)
+    random.shuffle(json_portfolios)
     with open(path, 'w') as outfile:
-        json.dump(rand_portfolios, outfile)
+        json.dump(json_portfolios, outfile)
 
-    initialize_rankinformation()
+    #initialize_rankinformation()
     return HttpResponse("ok")
 
 def products_scrape():
