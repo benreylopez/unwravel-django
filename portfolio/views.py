@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from io import StringIO
+import random
 
 from rest_framework import status
 from rest_framework.generics import (ListCreateAPIView,
@@ -408,7 +409,7 @@ def products_scrape():
     rand_portfolios = random.shuffle(json_portfolios)
     with open(path, 'w') as outfile:
         json.dump(rand_portfolios, outfile)
-        
+
     initialize_rankinformation()
     # return HttpResponse("ok")
 
