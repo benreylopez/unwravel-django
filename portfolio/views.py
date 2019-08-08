@@ -258,7 +258,7 @@ class AddFriendAPIView(ListCreateAPIView):
         email_list = []
         email_list.append(request.data['email'])
         account = Account.objects.get(email=self.request.user)
-        path = settings.BASE_DIR + '/static/invite.html'
+        path = 'invite.html'
         html_message = loader.render_to_string(
             path ,
             {
