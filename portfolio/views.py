@@ -69,14 +69,11 @@ class PortfolioListAPIView(ListCreateAPIView):
             if portfoliolike:
                 if(portfoliolike[0].lol >= 1):
                     portfolio['lol'] = portfoliolike[0].lol
-                elif(portfolio['style_attributes'] in liked_style):
-                    portfolio['lol'] = 0
                 else:
-                    portfolio['lol'] = -1
-            elif(portfolio['style_attributes'] in liked_style):
-                portfolio['lol'] = 0
+                    portfolio['lol'] = 0
             else:
-                portfolio['lol'] = -1
+                portfolio['lol'] = 0
+
 
             productrank = ProductRank.objects.filter(uniq_id = uniq_id)
 
@@ -130,13 +127,7 @@ class BrideListAPIView(RetrieveAPIView):
                 unliked_portfolio.append(portfolio)
 
         for portfolio in unliked_portfolio:
-            if portfolio['style_attributes'] in liked_style:
-                portfolio['lol'] = 0
-                json_result.append(portfolio)
-            else:
-                left_portfolio.append(portfolio)
-        for portfolio in left_portfolio:
-            portfolio['lol'] = -1
+            portfolio['lol'] = 0
             json_result.append(portfolio)
 
         return Response( data=json_result,
@@ -267,7 +258,7 @@ class AddFriendAPIView(ListCreateAPIView):
         email_list = []
         email_list.append(request.data['email'])
         account = Account.objects.get(email=self.request.user)
-        path = settins.BASE_DIR + '/static/html_email/invvite.html'
+        path = settins.BASE_DIR + '/static/html_email/invite.html'
         html_message = loader.render_to_string(
             path ,
             {
@@ -343,7 +334,7 @@ def test_send_message(request):
     send_mail('Friend Message',
             '',
             settings.DEFAULT_FROM_EMAIL,
-            ['nicknovak88@hotmail.com'],
+            ['weitsui88@gmail.com'],
             html_message = "Added Friend",
             fail_silently=False
             )
@@ -383,7 +374,7 @@ def update_rank(uniq_id, like, love, gift):
 
 def products_scraper(request):
     print("scraping started")
-    #scraper()
+    scraper()
     zaful_scraper()
 
     # randomize
@@ -394,7 +385,7 @@ def products_scraper(request):
     with open(path, 'w') as outfile:
         json.dump(json_portfolios, outfile)
 
-    #initialize_rankinformation()
+    initialize_rankinformation()
     return HttpResponse("ok")
 
 def products_scrape():
