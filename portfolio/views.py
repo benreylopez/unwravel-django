@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from django.http import HttpResponse
 from accounts.models import Account
 from django.conf import settings
+from django.template import loader
 from scraper.victoria_scraper_headless import scraper
 from scraper.zaful_scraper import zaful_scraper
 # from apps.portfolio.models import Portfolio
@@ -265,11 +266,20 @@ class AddFriendAPIView(ListCreateAPIView):
         email_list = []
         email_list.append(request.data['email'])
         account = Account.objects.get(email=self.request.user)
+        path = settins.BASE_DIR + '/static/html_email/invvite.html'
+        html_message = loader.render_to_string(
+            path ,
+            {
+                'firstname': account.firstname,
+                'lastname': account.lastname,
+                'email': acount.email
+            }
+        )
         send_mail('Congratulations',
             '',
             settings.DEFAULT_FROM_EMAIL,
             email_list,
-            html_message =  "Hello,\n" + "\n" + account.firstname + " " + account.lastname + "(" + account.email + ")" + " has invited you to view their lingerie registry on unwravel.com! You can view the registry by using your email and theirs to login!\n" + "\n" + "Kindly,\n" + "\n" + "The Unwravel Team",
+            html_message =  html_message,
             fail_silently=False
             )
         return Response(
@@ -374,6 +384,15 @@ def products_scraper(request):
     print("scraping started")
     scraper()
     zaful_scraper()
+
+    # randomize
+    path = settings.BASE_DIR + '/static/victoria_secret.json'
+    json_data = open(path)
+    json_portfolios = json.load(json_data)
+    rand_portfolios = random.shuffle(json_portfolios)
+    with open(path, 'w') as outfile:
+        json.dump(rand_portfolios, outfile)
+
     initialize_rankinformation()
     return HttpResponse("ok")
 
@@ -381,6 +400,15 @@ def products_scrape():
     print("started ..")
     scraper()
     zaful_scraper()
+
+    # randomize
+    path = settings.BASE_DIR + '/static/victoria_secret.json'
+    json_data = open(path)
+    json_portfolios = json.load(json_data)
+    rand_portfolios = random.shuffle(json_portfolios)
+    with open(path, 'w') as outfile:
+        json.dump(rand_portfolios, outfile)
+        
     initialize_rankinformation()
     # return HttpResponse("ok")
 
