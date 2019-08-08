@@ -258,13 +258,13 @@ class AddFriendAPIView(ListCreateAPIView):
         email_list = []
         email_list.append(request.data['email'])
         account = Account.objects.get(email=self.request.user)
-        path = settins.BASE_DIR + '/static/html_email/invite.html'
+        path = settings.BASE_DIR + '/static/html_email/invite.html'
         html_message = loader.render_to_string(
             path ,
             {
                 'firstname': account.firstname,
                 'lastname': account.lastname,
-                'email': acount.email
+                'email': account.email
             }
         )
         send_mail('Congratulations',
