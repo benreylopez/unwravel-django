@@ -394,7 +394,7 @@ def products_scraper(request):
     with open(path, 'w') as outfile:
         json.dump(json_portfolios, outfile)
 
-    #initialize_rankinformation()
+    initialize_rankinformation()
     return HttpResponse("ok")
 
 def products_scrape():
