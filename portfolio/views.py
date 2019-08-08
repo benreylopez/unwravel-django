@@ -383,8 +383,8 @@ def update_rank(uniq_id, like, love, gift):
 
 def products_scraper(request):
     print("scraping started")
-    scraper()
-    #zaful_scraper()
+    #scraper()
+    zaful_scraper()
 
     # randomize
     path = settings.BASE_DIR + '/static/victoria_secret.json'
