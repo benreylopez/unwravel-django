@@ -1,0 +1,15 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello,
+
+Thank you for signing up with Unwravel! We look forward to helping you pick out the perfect gifts for you during this special time!
+
+To activate your account please click on the link below:
+
+{{ activate_url }}to something else.
+
+If you have any questions or need assistance please email our support team at
+support@unwravel.com
+
+Kindly,
+
+The Unwravel Team
+

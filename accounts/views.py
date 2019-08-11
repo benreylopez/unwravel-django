@@ -1,5 +1,6 @@
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 from django.shortcuts import render, redirect
 
 from accounts.serializers import AccountSerializer
@@ -23,7 +24,13 @@ def confirm_login(request):
 class ConfirmAPIView(RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = AccountSerializer
-    print("I am USER")
+
     def get(self, *args, **kwargs):
-    	print('USER:',self.request.user)
-	#return redirect("http://unwravel.com")
+        print('USER:',self.request.user)
+    #return redirect("http://unwravel.com")
+
+@api_view()
+def null_view(request):
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
